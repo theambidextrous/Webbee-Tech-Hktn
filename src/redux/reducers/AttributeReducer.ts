@@ -4,22 +4,22 @@ import {Attribute} from '../../models';
 const initialState: Attribute[] = [
   {
     id: 1,
-    name: 'date',
+    value: 'date',
     label: 'DATE',
   },
   {
     id: 2,
-    name: 'text',
+    value: 'text',
     label: 'TEXT',
   },
   {
     id: 3,
-    name: 'checkbox',
+    value: 'checkbox',
     label: 'CHECKBOX',
   },
   {
     id: 4,
-    name: 'number',
+    value: 'number',
     label: 'NUMBER',
   },
 ];

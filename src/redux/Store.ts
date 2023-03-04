@@ -1,20 +1,24 @@
-import {configureStore} from '@reduxjs/toolkit';
+import {configureStore, combineReducers} from '@reduxjs/toolkit';
 import AttributeReducer from './reducers/AttributeReducer';
+import CategoriesReducer from './reducers/CategoriesReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {persistReducer, persistStore} from 'redux-persist';
 import thunk from 'redux-thunk';
+
+const reducers = combineReducers({
+  attribute: AttributeReducer,
+  category: CategoriesReducer,
+});
 
 const persistConfig: any = {
   key: 'root',
   storage: AsyncStorage,
 };
 
-const persistedReducer = persistReducer(persistConfig, AttributeReducer);
+const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = configureStore({
-  reducer: {
-    attribute: persistedReducer,
-  },
+  reducer: persistedReducer,
   middleware: [thunk],
 });
 

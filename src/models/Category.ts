@@ -1,11 +1,15 @@
-import {Attribute} from './Attribute';
-
 export interface Category {
   id: number;
   name?: string;
-  attributes?: Attribute[];
-  title?: string; //to be the name of the machine
+  fields?: CategoryField[];
   machines?: any[];
+}
+
+export interface CategoryField {
+  id: number;
+  name?: string;
+  type: string;
+  isTitle: boolean; //to be the name of the machine
 }
 
 export interface UpdateCategory {

@@ -15,7 +15,7 @@ const Dashboard = ({navigation}: {navigation: any}) => (
         mode="contained"
         compact={true}
         uppercase={true}
-        onPress={() => navigation.navigate('')}>
+        onPress={() => navigation.navigate('Manage Categories')}>
         <Text style={styles.text}>Add A Category</Text>
       </Button>
     </ScrollView>
