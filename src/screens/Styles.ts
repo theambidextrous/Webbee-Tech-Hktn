@@ -32,7 +32,7 @@ export const CategoryItem = styled.View`
   padding: 15px;
   margin: 10px;
   height: auto;
-  flex-basis: ${Platform.isPad ? '45%' : '100%'};
+  flex-basis: ${Platform.isPad ? '47%' : '100%'};
 `;
 
 export const HeaderRow = styled.View`
