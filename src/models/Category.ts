@@ -2,7 +2,22 @@ export interface Category {
   id: number;
   name?: string;
   fields?: CategoryField[];
-  machines?: any[];
+  machines: any[];
+}
+
+export interface Machine {
+  id: number;
+  properties: MachineProperty[];
+}
+
+export interface AddMachine {
+  categoryId: number;
+  machine: Machine;
+}
+
+export interface MachineProperty {
+  fieldId?: number;
+  fieldValue?: any;
 }
 
 export interface CategoryField {
@@ -31,4 +46,16 @@ export interface UpdateCategoryField {
 export interface DeleteCategoryField {
   categoryId: number;
   fieldId: number;
+}
+
+export interface DeleteMachine {
+  machineId: number;
+  categoryId: number;
+}
+
+export interface UpdateMachine {
+  value: any;
+  fieldId: number;
+  machineId: number;
+  categoryId: number;
 }

@@ -1128,6 +1128,99 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.35.0.tgz#b7569632b0b788a0ca0e438235154e45d42813a7"
   integrity sha512-JXdzbRiWclLVoD8sNUjR443VVlYqiYmDVT6rGUEIEHU5YJW0gaVZwV2xgM7D4arkvASqD0IlLUVjHiFuxaftRw==
 
+"@formatjs/ecma402-abstract@1.14.3":
+  version "1.14.3"
+  resolved "https://registry.yarnpkg.com/@formatjs/ecma402-abstract/-/ecma402-abstract-1.14.3.tgz#6428f243538a11126180d121ce8d4b2f17465738"
+  integrity sha512-SlsbRC/RX+/zg4AApWIFNDdkLtFbkq3LNoZWXZCE/nHVKqoIJyaoQyge/I0Y38vLxowUn9KTtXgusLD91+orbg==
+  dependencies:
+    "@formatjs/intl-localematcher" "0.2.32"
+    tslib "^2.4.0"
+
+"@formatjs/intl-datetimeformat@^6.5.1":
+  version "6.5.1"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-datetimeformat/-/intl-datetimeformat-6.5.1.tgz#db1fbfe2a5775c72fe9c6c9314129e43976732d3"
+  integrity sha512-Oc2iAvk++pf9HgK20nuf3v4AhSrHbqEur0zdvRv4NL4hPpY3Ucz9ZH5WSfui9Rl29lwa7cYkdudx0FN51NS8/A==
+  dependencies:
+    "@formatjs/ecma402-abstract" "1.14.3"
+    "@formatjs/intl-localematcher" "0.2.32"
+    tslib "^2.4.0"
+
+"@formatjs/intl-displaynames@^6.2.6":
+  version "6.2.6"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-displaynames/-/intl-displaynames-6.2.6.tgz#6bc02fe0bf6571391aac0e01e74ecbf38542ff32"
+  integrity sha512-scf5AQTk9EjpvPhboo5sizVOvidTdMOnajv9z+0cejvl7JNl9bl/aMrNBgC72UH+bP3l45usPUKAGskV6sNIrA==
+  dependencies:
+    "@formatjs/ecma402-abstract" "1.14.3"
+    "@formatjs/intl-localematcher" "0.2.32"
+    tslib "^2.4.0"
+
+"@formatjs/intl-enumerator@1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-enumerator/-/intl-enumerator-1.2.1.tgz#2bed9e59385105d8a234fe5b71f27cda7c093e61"
+  integrity sha512-hK54SSi3hwwWZd7zz9wjYo7AIOlovhHBoUYjQJ5sZXHSLdwAnxE2ck5VaTwWKr4X6Vryq5stmy+MQXA4nDT9jg==
+  dependencies:
+    tslib "^2.4.0"
+
+"@formatjs/intl-getcanonicallocales@2.1.0", "@formatjs/intl-getcanonicallocales@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-getcanonicallocales/-/intl-getcanonicallocales-2.1.0.tgz#57ef487ff2d90c12bbda9fba86f56b7c28cb80ba"
+  integrity sha512-gpPVLNSjNnwG4ctvSs7XiFQ/sIOyxcZrXukg1G226FUE+Cy6KMcAxo22zPZXhCTZt50b1FQZ/Zua5U/k9inb0Q==
+  dependencies:
+    tslib "^2.4.0"
+
+"@formatjs/intl-listformat@^7.1.9":
+  version "7.1.9"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-listformat/-/intl-listformat-7.1.9.tgz#0c2ce67b610054f215dd2635a6da7da308cfbe3d"
+  integrity sha512-5YikxwRqRXTVWVujhswDOTCq6gs+m9IcNbNZLa6FLtyBStAjEsuE2vAU+lPsbz9ZTST57D5fodjIh2JXT6sMWQ==
+  dependencies:
+    "@formatjs/ecma402-abstract" "1.14.3"
+    "@formatjs/intl-localematcher" "0.2.32"
+    tslib "^2.4.0"
+
+"@formatjs/intl-locale@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-locale/-/intl-locale-3.1.1.tgz#8d2efe6d1cade0cda367b1aeee38909b880ae067"
+  integrity sha512-UshFvThVOloYsHagGe7m2mDifEbZaS9+a+x3Va8YKU3NxFDyNr8s5EQgYkZhZ2kTzWqBxeKB/qZE9VT6LR/lRg==
+  dependencies:
+    "@formatjs/ecma402-abstract" "1.14.3"
+    "@formatjs/intl-enumerator" "1.2.1"
+    "@formatjs/intl-getcanonicallocales" "2.1.0"
+    tslib "^2.4.0"
+
+"@formatjs/intl-localematcher@0.2.32":
+  version "0.2.32"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-localematcher/-/intl-localematcher-0.2.32.tgz#00d4d307cd7d514b298e15a11a369b86c8933ec1"
+  integrity sha512-k/MEBstff4sttohyEpXxCmC3MqbUn9VvHGlZ8fauLzkbwXmVrEeyzS+4uhrvAk9DWU9/7otYWxyDox4nT/KVLQ==
+  dependencies:
+    tslib "^2.4.0"
+
+"@formatjs/intl-numberformat@^8.3.5":
+  version "8.3.5"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-numberformat/-/intl-numberformat-8.3.5.tgz#acd8c0f4210a75f71816118dda4deccbcdeadffa"
+  integrity sha512-ui9Og9eB7wKPIc/xGKXaohJrL718S+TzKQp37X0HxvHb+MXQmU+cEM6Y/jDESPaw15FQeoYRa/FU0iX/mpI21w==
+  dependencies:
+    "@formatjs/ecma402-abstract" "1.14.3"
+    "@formatjs/intl-localematcher" "0.2.32"
+    tslib "^2.4.0"
+
+"@formatjs/intl-pluralrules@^5.1.10":
+  version "5.1.10"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-pluralrules/-/intl-pluralrules-5.1.10.tgz#46ad0680f013cdbcccab36891c4ccdd9e4069070"
+  integrity sha512-c8VZ0J0LalJ+4PHyYkwn/Vc9XX6TJPcY1HHyOixhEnr1x4zxk3ehvdQE8pB0/zuSE1RQTos/pKMF/8XmEsM/cA==
+  dependencies:
+    "@formatjs/ecma402-abstract" "1.14.3"
+    "@formatjs/intl-localematcher" "0.2.32"
+    tslib "^2.4.0"
+
+"@formatjs/intl-relativetimeformat@^11.1.10":
+  version "11.1.10"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-relativetimeformat/-/intl-relativetimeformat-11.1.10.tgz#529ea8a21df3c7df5efba9ebaf0dc29516572e7c"
+  integrity sha512-4KTqW0mq3MR4cUAaSxiccNdurTT+ZwqrccpwsDuMLsz8Fw7i6krt4rgdT4y7cu1jpKtBMffwTBvWMBLMudxNsQ==
+  dependencies:
+    "@formatjs/ecma402-abstract" "1.14.3"
+    "@formatjs/intl-localematcher" "0.2.32"
+    tslib "^2.4.0"
+
 "@hapi/hoek@^9.0.0":
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.3.0.tgz#8368869dcb735be2e7f5cb7647de78e167a251fb"
@@ -2739,7 +2832,7 @@ color-string@^1.6.0, color-string@^1.9.0:
     color-name "^1.0.0"
     simple-swizzle "^0.2.2"
 
-color@^3.1.2:
+color@^3.1.2, color@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/color/-/color-3.2.1.tgz#3544dc198caf4490c3ecc9a790b54fe9ff45e164"
   integrity sha512-aBl7dZI9ENN6fUGC7mWpMTPNHmWUSNan9tuWN6ahh5ZLNk9baLJOnSMlrQkHcrfFgz2/RigjUVAjdx36VcemKA==
@@ -6125,6 +6218,18 @@ react-native-gradle-plugin@^0.71.15:
   resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.71.15.tgz#9e6b506f30729fe8eb086981702f4e3c891d2b13"
   integrity sha512-7S3pAuPaQJlhax6EZ4JMsDNpj05TfuzX9gPgWLrFfAIWIFLuJ6aDQYAZy2TEI9QJALPoWrj8LWaqP/DGYh14pw==
 
+react-native-localize@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/react-native-localize/-/react-native-localize-2.2.5.tgz#5f59c9482f2264a16d2f08e2b9a79071349a70dc"
+  integrity sha512-w0bBZ4X/lkErNXb5T+cQfUKgEv2+28o7jZhK/vPesf91D4yQKUCtS7Uz0s1AnRXYKOyTm3TCUgFuRVqKzuWlMQ==
+
+react-native-paper-dates@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/react-native-paper-dates/-/react-native-paper-dates-0.12.0.tgz#8007d67bb7a2ccb06856a6331f59b9e741112240"
+  integrity sha512-oT4YgtADFx4YFBSYzJrqmRgs7l9Bc4mnVVd08W9ccTnLELEFCTjMnf5SuFKAdjRDJf96pDnWFwQXiRwOJIMytQ==
+  dependencies:
+    color "^3.2.1"
+
 react-native-paper-dropdown@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/react-native-paper-dropdown/-/react-native-paper-dropdown-1.0.7.tgz#64fe004b05b73ca5c781873d800ac5062b35bdc9"
@@ -7086,7 +7191,7 @@ tslib@^1.8.1:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.0.1:
+tslib@^2.0.1, tslib@^2.4.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.5.0.tgz#42bfed86f5787aeb41d031866c8f402429e0fddf"
   integrity sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==

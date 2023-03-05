@@ -11,6 +11,9 @@ import {Provider} from 'react-redux';
 import App from './src/App';
 import {name as appName} from './app.json';
 import {store, persistor} from './src/redux/Store';
+import {enGB, registerTranslation} from 'react-native-paper-dates';
+
+registerTranslation('en-GB', enGB);
 
 const theme = {
   ...DefaultTheme,

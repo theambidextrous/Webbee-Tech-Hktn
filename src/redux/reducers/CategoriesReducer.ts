@@ -6,6 +6,11 @@ import {
   UpdateCategoryField,
   CategoryField,
   AddCategoryField,
+  AddMachine,
+  DeleteMachine,
+  Machine,
+  UpdateMachine,
+  MachineProperty,
 } from '../../models';
 
 const initialState: Category[] = [];
@@ -154,9 +159,62 @@ export const categorySlice = createSlice({
       });
     },
 
-    deleteCategoryMachine: (state, action: PayloadAction<Category>) => {
-      /** TODO add logic & payload  */
-      return [...state, action.payload];
+    addMachine: (state, action: PayloadAction<AddMachine>) => {
+      const {categoryId, machine} = action.payload;
+      return state.map((categ: Category) => {
+        if (categ.id === categoryId) {
+          const currentMachines = categ.machines || [];
+          return {
+            ...categ,
+            machines: [...currentMachines, machine],
+          };
+        }
+        return categ;
+      });
+    },
+
+    deleteMachine: (state, action: PayloadAction<DeleteMachine>) => {
+      const {machineId, categoryId} = action.payload;
+      return state.map((categ: Category) => {
+        if (categ.id === categoryId) {
+          return {
+            ...categ,
+            machines: categ.machines?.filter(
+              (m: Machine) => m.id !== machineId,
+            ),
+          };
+        }
+        return categ;
+      });
+    },
+
+    updateMachineFieldValue: (state, action: PayloadAction<UpdateMachine>) => {
+      const {categoryId, fieldId, machineId, value} = action.payload;
+      return state.map((categ: Category) => {
+        if (categ.id === categoryId) {
+          return {
+            ...categ,
+            machines: categ.machines?.map((m: Machine) => {
+              if (m.id === machineId) {
+                return {
+                  ...m,
+                  properties: m.properties?.map((p: MachineProperty) => {
+                    if (p.fieldId === fieldId) {
+                      return {
+                        ...p,
+                        fieldValue: value,
+                      };
+                    }
+                    return p;
+                  }),
+                };
+              }
+              return m;
+            }),
+          };
+        }
+        return categ;
+      });
     },
   },
 });
@@ -170,6 +228,8 @@ export const {
   updateCategoryFieldIsTitle,
   deleteCategory,
   deleteCategoryField,
-  deleteCategoryMachine,
+  addMachine,
+  deleteMachine,
+  updateMachineFieldValue,
 } = categorySlice.actions;
 export default categorySlice.reducer;

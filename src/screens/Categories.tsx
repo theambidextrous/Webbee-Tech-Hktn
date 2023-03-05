@@ -1,7 +1,6 @@
 import React from 'react';
 import {StatusBar} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
-import styled from 'styled-components/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DropDown from 'react-native-paper-dropdown';
@@ -24,21 +23,20 @@ import {
   UpdateCategory,
   UpdateCategoryField,
 } from '../models';
-
-interface FlexColumnProps {
-  readonly flex: number;
-}
-
-interface GapProps {
-  readonly gap: number;
-}
-
-const buttonStyles = {
-  marginTop: 20,
-  width: '100%',
-  height: 44,
-  borderRadius: 8,
-};
+import {
+  StyledSafeAreaView,
+  StyledScrollView,
+  CategoryItemWrapper,
+  CategoryItem,
+  FlexFooterColumn,
+  FlexColumn,
+  FlexColumnCenter,
+  FlexRow,
+  VerticalGap,
+  HorizontalGap,
+  StyledText,
+  TitleText,
+} from './Styles';
 
 const Categories = () => {
   const dispatch = useDispatch();
@@ -68,6 +66,7 @@ const Categories = () => {
       id,
       name: 'New Category',
       fields: [{id: 1, type: 'text', name: 'Field', isTitle: false}],
+      machines: [],
     };
     dispatch(addCategory(catPayload));
   };
@@ -76,6 +75,7 @@ const Categories = () => {
     const categoryForUpdate: Category = {
       id: categoryId,
       name,
+      machines: [],
     };
     const updateCatPayload: UpdateCategory = {
       categoryId,
@@ -139,6 +139,11 @@ const Categories = () => {
   const onCategoryDeleted = (categoryId: number) => {
     dispatch(deleteCategory(categoryId));
     return;
+  };
+
+  const buttonStyles = {
+    marginTop: 20,
+    borderRadius: 8,
   };
 
   const iconSize = {fontSize: 40, color: '#7d7d7d'};
@@ -306,69 +311,5 @@ const Categories = () => {
     </StyledSafeAreaView>
   );
 };
-
-const StyledSafeAreaView = styled.SafeAreaView`
-  flex: 1;
-  background-color: ${Colors.lighter};
-`;
-
-const StyledScrollView = styled.ScrollView<FlexColumnProps>`
-  flex: ${(props: any) => props.flex};
-  background-color: #f2efef;
-  padding: 20px 20px;
-`;
-
-const CategoryItemWrapper = styled.View`
-  flex: 1;
-  flex-direction: row;
-  flex-wrap: wrap;
-`;
-
-const CategoryItem = styled.View`
-  background-color: #fff;
-  padding: 15px;
-  margin: 10px;
-  flex-basis: 45%;
-`;
-
-const FlexFooterColumn = styled.View<FlexColumnProps>`
-  flex: ${(props: any) => props.flex};
-  padding: 20px 20px;
-`;
-
-const FlexColumn = styled.View<FlexColumnProps>`
-  flex: ${(props: any) => props.flex};
-`;
-
-const FlexColumnCenter = styled.View<FlexColumnProps>`
-  flex: ${(props: any) => props.flex};
-  justify-content: center;
-`;
-
-const FlexRow = styled.View<FlexColumnProps>`
-  flex: ${(props: any) => props.flex};
-  flex-direction: row;
-`;
-
-const VerticalGap = styled.View<GapProps>`
-  width: ${(props: any) => props.gap}px;
-`;
-
-const HorizontalGap = styled.View<GapProps>`
-  height: ${(props: any) => props.gap}px;
-`;
-
-const StyledText = styled.Text`
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 26px;
-`;
-
-const TitleText = styled.Text`
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 24px;
-  color: #7d7d7d;
-`;
 
 export {Categories};

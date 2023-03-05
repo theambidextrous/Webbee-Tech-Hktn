@@ -14,7 +14,6 @@ const DrawerNav = (): JSX.Element => {
   return (
     <Drawer.Navigator initialRouteName="Dashboard">
       <Drawer.Screen name="Dashboard" component={Dashboard} />
-      {/* loop categories and list them here */}
       {Array.isArray(category) &&
         category.length > 0 &&
         category.map((categ: Category, idx: number) => {
@@ -29,7 +28,6 @@ const DrawerNav = (): JSX.Element => {
             );
           }
         })}
-      {/* end loop categories */}
       <Drawer.Screen name="Manage Categories" component={Categories} />
     </Drawer.Navigator>
   );
