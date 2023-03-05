@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {Platform} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 interface FlexColumnProps {
@@ -31,7 +32,7 @@ export const CategoryItem = styled.View`
   padding: 15px;
   margin: 10px;
   height: auto;
-  flex-basis: 45%;
+  flex-basis: ${Platform.isPad ? '45%' : '100%'};
 `;
 
 export const HeaderRow = styled.View`
