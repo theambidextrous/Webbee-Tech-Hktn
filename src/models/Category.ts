@@ -12,12 +12,23 @@ export interface CategoryField {
   isTitle: boolean; //to be the name of the machine
 }
 
+export interface AddCategoryField {
+  categoryId: number;
+  field: CategoryField;
+}
+
 export interface UpdateCategory {
   categoryId: number;
   category: Category;
 }
 
-export interface DeleteCategoryAttribute {
+export interface UpdateCategoryField {
   categoryId: number;
-  attributeId: number;
+  fieldId: number;
+  value: any;
+}
+
+export interface DeleteCategoryField {
+  categoryId: number;
+  fieldId: number;
 }

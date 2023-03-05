@@ -6,8 +6,24 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DropDown from 'react-native-paper-dropdown';
 import {RootState} from '../redux/Store';
-import {addCategory} from '../redux/reducers/CategoriesReducer';
-import {Category, CategoryField} from '../models';
+import {
+  addCategory,
+  addCategoryField,
+  deleteCategory,
+  deleteCategoryField,
+  updateCategoryFieldIsTitle,
+  updateCategoryFieldName,
+  updateCategoryFieldType,
+  updateCategoryName,
+} from '../redux/reducers/CategoriesReducer';
+import {
+  AddCategoryField,
+  Category,
+  CategoryField,
+  DeleteCategoryField,
+  UpdateCategory,
+  UpdateCategoryField,
+} from '../models';
 
 interface FlexColumnProps {
   readonly flex: number;
@@ -43,7 +59,7 @@ const Categories = () => {
     if (fields === undefined) {
       return [];
     }
-    return fields.map((f: CategoryField) => ({value: f.name, label: f.name}));
+    return fields.map((f: CategoryField) => ({value: f.id, label: f.name}));
   };
 
   const onAddCategoryPressed = () => {
@@ -55,14 +71,77 @@ const Categories = () => {
     };
     dispatch(addCategory(catPayload));
   };
-  const onCategoryNameChanged = (text: string) => text;
-  const onCategoryFieldChanged = (text: string) => text;
-  const onCategoryFieldDeleted = (text: CategoryField) => text;
-  const onCategoryDeleted = (text: Category) => text;
+
+  const onCategoryNameChanged = (name: string, categoryId: number) => {
+    const categoryForUpdate: Category = {
+      id: categoryId,
+      name,
+    };
+    const updateCatPayload: UpdateCategory = {
+      categoryId,
+      category: categoryForUpdate,
+    };
+    dispatch(updateCategoryName(updateCatPayload));
+    return;
+  };
+
+  const onCategoryFieldChanged = (
+    text: string,
+    categoryId: number,
+    fieldId: number,
+    change: string,
+  ) => {
+    const updateFieldPayload: UpdateCategoryField = {
+      categoryId,
+      fieldId,
+      value: text,
+    };
+    switch (change) {
+      /** field name changed */
+      case 'name':
+        dispatch(updateCategoryFieldName(updateFieldPayload));
+        break;
+
+      /** field type changed */
+      case 'type':
+        dispatch(updateCategoryFieldType(updateFieldPayload));
+        break;
+
+      case 'add':
+        const addFieldPayload: AddCategoryField = {
+          categoryId,
+          field: {
+            id: 0, // for format purposes
+            type: text,
+            isTitle: false,
+          },
+        };
+        dispatch(addCategoryField(addFieldPayload));
+        break;
+
+      case 'isTitle':
+        dispatch(updateCategoryFieldIsTitle(updateFieldPayload));
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  const onCategoryFieldDeleted = (categoryId: number, fieldId: number) => {
+    const deleteFieldPayload: DeleteCategoryField = {
+      categoryId,
+      fieldId,
+    };
+    dispatch(deleteCategoryField(deleteFieldPayload));
+  };
+
+  const onCategoryDeleted = (categoryId: number) => {
+    dispatch(deleteCategory(categoryId));
+    return;
+  };
 
   const iconSize = {fontSize: 40, color: '#7d7d7d'};
-  // console.log('attributes', attribute);
-  // console.log('categories', category);
 
   return (
     <StyledSafeAreaView>
@@ -79,58 +158,74 @@ const Categories = () => {
                   mode="outlined"
                   label="Category Name"
                   value={categ.name}
-                  onChangeText={text => onCategoryNameChanged(text)}
+                  onChangeText={text => onCategoryNameChanged(text, categ.id)}
                 />
                 <HorizontalGap gap={10} />
                 {/* Fields */}
                 {categ.fields?.map((field: CategoryField, index: number) => {
                   const keyString = Number(String(categ.id) + String(field.id));
                   return (
-                    <FlexRow key={index + idx} flex={1}>
-                      <FlexColumn flex={8}>
-                        <FlexRow flex={5}>
-                          <FlexColumnCenter flex={2}>
-                            <TextInput
-                              mode="outlined"
-                              label="Field"
-                              value={field.name}
-                              onChangeText={text =>
-                                onCategoryFieldChanged(text)
-                              }
-                            />
-                          </FlexColumnCenter>
-                          <VerticalGap gap={10} />
-                          <FlexColumnCenter flex={1}>
-                            <DropDown
-                              label={String(field.type).toLocaleUpperCase()}
-                              mode={'outlined'}
-                              visible={activePicker === keyString}
-                              showDropDown={() => {
-                                setActivePicker(keyString);
-                              }}
-                              onDismiss={() => {
-                                setActivePicker(0);
-                              }}
-                              value={null}
-                              setValue={(_value: any) => {
-                                console.log('value', _value);
-                              }}
-                              list={attribute}
-                            />
-                          </FlexColumnCenter>
-                        </FlexRow>
-                      </FlexColumn>
-                      <FlexColumnCenter flex={1}>
-                        <Button
-                          mode="text"
-                          compact={true}
-                          labelStyle={iconSize}
-                          icon="trash-can"
-                          onPress={() => onCategoryFieldDeleted(field)}>
-                          {''}
-                        </Button>
-                      </FlexColumnCenter>
-                    </FlexRow>
+                    <>
+                      <FlexRow key={index + idx} flex={1}>
+                        <FlexColumn flex={8}>
+                          <FlexRow flex={5}>
+                            <FlexColumnCenter flex={2}>
+                              <TextInput
+                                mode="outlined"
+                                label="Field"
+                                value={field.name}
+                                onChangeText={text =>
+                                  onCategoryFieldChanged(
+                                    text,
+                                    categ.id,
+                                    field.id,
+                                    'name',
+                                  )
+                                }
+                              />
+                            </FlexColumnCenter>
+                            <VerticalGap gap={10} />
+                            <FlexColumnCenter flex={1}>
+                              <DropDown
+                                label={String(field.type).toLocaleUpperCase()}
+                                mode={'outlined'}
+                                visible={activePicker === keyString}
+                                showDropDown={() => {
+                                  setActivePicker(keyString);
+                                }}
+                                onDismiss={() => {
+                                  setActivePicker(0);
+                                }}
+                                value={null}
+                                setValue={(_value: any) => {
+                                  onCategoryFieldChanged(
+                                    _value,
+                                    categ.id,
+                                    field.id,
+                                    'type',
+                                  );
+                                  console.log('value', _value);
+                                }}
+                                list={attribute}
+                              />
+                            </FlexColumnCenter>
+                          </FlexRow>
+                        </FlexColumn>
+                        <FlexColumnCenter flex={1}>
+                          <Button
+                            mode="text"
+                            compact={true}
+                            labelStyle={iconSize}
+                            icon="trash-can"
+                            onPress={() =>
+                              onCategoryFieldDeleted(categ.id, field.id)
+                            }>
+                            {''}
+                          </Button>
+                        </FlexColumnCenter>
+                      </FlexRow>
+                      <HorizontalGap gap={10} />
+                    </>
                   );
                 })}
                 <HorizontalGap gap={10} />
@@ -150,6 +245,12 @@ const Categories = () => {
                     }}
                     value={null}
                     setValue={(_value: any) => {
+                      onCategoryFieldChanged(
+                        _value,
+                        categ.id,
+                        _value,
+                        'isTitle',
+                      );
                       console.log('value', _value);
                     }}
                     list={fieldToDropDownFormat(categ.fields)}
@@ -171,6 +272,7 @@ const Categories = () => {
                       }}
                       value={null}
                       setValue={(_value: any) => {
+                        onCategoryFieldChanged(_value, categ.id, 0, 'add');
                         console.log('value', _value);
                       }}
                       list={attribute}
@@ -182,7 +284,7 @@ const Categories = () => {
                       compact={true}
                       icon="trash-can"
                       labelStyle={iconSize}
-                      onPress={() => onCategoryDeleted(categ)}>
+                      onPress={() => onCategoryDeleted(categ.id)}>
                       <StyledText>REMOVE</StyledText>
                     </Button>
                   </FlexColumnCenter>
